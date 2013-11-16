@@ -18,6 +18,8 @@ import java.util.List;
  */
 public class Forecast implements Parcelable {
 
+    private transient long mId;
+
     @SerializedName("date")
     private String mDateStr;
 
@@ -44,6 +46,14 @@ public class Forecast implements Parcelable {
 
     private transient long mDate = -1;
 
+    public long getId() {
+        return mId;
+    }
+
+    public void setId(final long id) {
+        mId = id;
+    }
+
     public float getMaxTemp() {
         return mMaxTemp;
     }
@@ -66,6 +76,14 @@ public class Forecast implements Parcelable {
 
     public void setWeatherDescription(final List<WeatherDescription> weatherDescription) {
         mWeatherDescription = weatherDescription;
+    }
+
+    public void addWeatherDescriptionLine(WeatherDescription desc) {
+        if (mWeatherDescription == null) {
+            mWeatherDescription = new ArrayList<>(1);
+        }
+
+        mWeatherDescription.add(desc);
     }
 
     public int getWeatherCode() {
@@ -128,6 +146,7 @@ public class Forecast implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(mId);
         dest.writeString(mDateStr);
         dest.writeFloat(mMaxTemp);
         dest.writeFloat(mMinTemp);
@@ -142,6 +161,7 @@ public class Forecast implements Parcelable {
         public Forecast createFromParcel(Parcel in) {
             final Forecast f = new Forecast();
 
+            f.mId = in.readLong();
             f.mDateStr = in.readString();
             f.mMaxTemp = in.readFloat();
             f.mMinTemp = in.readFloat();
