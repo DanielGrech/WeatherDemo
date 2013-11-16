@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Weather Demo</string>
+    <string name="unknown_error">Unknown error</string>
+</resources>

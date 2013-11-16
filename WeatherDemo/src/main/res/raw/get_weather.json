@@ -1,0 +1,121 @@
+{
+    "data": {
+        "nearest_area": [{
+            "areaName": [{
+                "value": "City Of Sydney"
+            }],
+            "country": [{
+                "value": "Australia"
+            }],
+            "latitude": "-33.883",
+            "longitude": "151.217",
+            "population": "0",
+            "region": [{
+                "value": "New South Wales"
+            }],
+            "weatherUrl": [{
+                "value": "http:\/\/www.worldweatheronline.com\/City-Of-Sydney-weather\/New-South-Wales\/AU.aspx"
+            }]
+        }],
+        "request": [{
+            "query": "Sydney, Australia",
+            "type": "City"
+        }],
+        "weather": [{
+            "date": "2013-11-16",
+            "precipMM": "23.5",
+            "tempMaxC": "21",
+            "tempMaxF": "70",
+            "tempMinC": "16",
+            "tempMinF": "61",
+            "weatherCode": "356",
+            "weatherDesc": [{
+                "value": "Moderate or heavy rain shower"
+            }],
+            "weatherIconUrl": [{
+                "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0010_heavy_rain_showers.png"
+            }],
+            "winddir16Point": "SSE",
+            "winddirDegree": "153",
+            "winddirection": "SSE",
+            "windspeedKmph": "22",
+            "windspeedMiles": "14"
+        }, {
+            "date": "2013-11-17",
+            "precipMM": "7.7",
+            "tempMaxC": "22",
+            "tempMaxF": "71",
+            "tempMinC": "17",
+            "tempMinF": "62",
+            "weatherCode": "353",
+            "weatherDesc": [{
+                "value": "Light rain shower"
+            }],
+            "weatherIconUrl": [{
+                "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0009_light_rain_showers.png"
+            }],
+            "winddir16Point": "SSE",
+            "winddirDegree": "156",
+            "winddirection": "SSE",
+            "windspeedKmph": "24",
+            "windspeedMiles": "15"
+        }, {
+            "date": "2013-11-18",
+            "precipMM": "5.3",
+            "tempMaxC": "23",
+            "tempMaxF": "74",
+            "tempMinC": "16",
+            "tempMinF": "61",
+            "weatherCode": "353",
+            "weatherDesc": [{
+                "value": "Light rain shower"
+            }],
+            "weatherIconUrl": [{
+                "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0009_light_rain_showers.png"
+            }],
+            "winddir16Point": "SE",
+            "winddirDegree": "140",
+            "winddirection": "SE",
+            "windspeedKmph": "21",
+            "windspeedMiles": "13"
+        }, {
+            "date": "2013-11-19",
+            "precipMM": "0.3",
+            "tempMaxC": "27",
+            "tempMaxF": "80",
+            "tempMinC": "16",
+            "tempMinF": "60",
+            "weatherCode": "116",
+            "weatherDesc": [{
+                "value": "Partly Cloudy"
+            }],
+            "weatherIconUrl": [{
+                "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0002_sunny_intervals.png"
+            }],
+            "winddir16Point": "SE",
+            "winddirDegree": "126",
+            "winddirection": "SE",
+            "windspeedKmph": "17",
+            "windspeedMiles": "10"
+        }, {
+            "date": "2013-11-20",
+            "precipMM": "0.1",
+            "tempMaxC": "30",
+            "tempMaxF": "87",
+            "tempMinC": "19",
+            "tempMinF": "65",
+            "weatherCode": "113",
+            "weatherDesc": [{
+                "value": "Sunny"
+            }],
+            "weatherIconUrl": [{
+                "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0001_sunny.png"
+            }],
+            "winddir16Point": "NNE",
+            "winddirDegree": "24",
+            "winddirection": "NNE",
+            "windspeedKmph": "18",
+            "windspeedMiles": "11"
+        }]
+    }
+}

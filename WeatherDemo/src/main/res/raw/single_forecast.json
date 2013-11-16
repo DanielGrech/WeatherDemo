@@ -1,0 +1,20 @@
+{
+    "date": "2013-11-19",
+    "precipMM": "0.3",
+    "tempMaxC": "27",
+    "tempMaxF": "80",
+    "tempMinC": "16",
+    "tempMinF": "60",
+    "weatherCode": "116",
+    "weatherDesc": [{
+        "value": "Partly Cloudy"
+    }],
+    "weatherIconUrl": [{
+        "value": "http:\/\/cdn.worldweatheronline.net\/images\/wsymbols01_png_64\/wsymbol_0002_sunny_intervals.png"
+    }],
+    "winddir16Point": "SE",
+    "winddirDegree": "126",
+    "winddirection": "SE",
+    "windspeedKmph": "17",
+    "windspeedMiles": "10"
+}
