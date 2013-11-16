@@ -127,8 +127,12 @@ public class Forecast implements Parcelable {
         mDate = date;
     }
 
-    String getDateStr() {
+    public String getDateStr() {
         return mDateStr;
+    }
+
+    public void setDateStr(String dateStr) {
+        mDateStr = dateStr;
     }
 
     public int getWindSpeed() {

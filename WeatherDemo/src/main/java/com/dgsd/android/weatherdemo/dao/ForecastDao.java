@@ -1,11 +1,18 @@
 package com.dgsd.android.weatherdemo.dao;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.text.TextUtils;
 import com.dgsd.android.weatherdemo.model.Forecast;
 import com.dgsd.android.weatherdemo.model.WeatherDescription;
 import com.dgsd.android.weatherdemo.model.WindDirection;
+import com.dgsd.android.weatherdemo.util.ContentValuesBuilder;
 import com.dgsd.android.weatherdemo.util.EnumUtils;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.dgsd.android.weatherdemo.data.Db.Field.*;
 
@@ -14,65 +21,70 @@ import static com.dgsd.android.weatherdemo.data.Db.Field.*;
  * objects (and visa-versa)
  */
 public class ForecastDao implements IDao<Forecast> {
-    @Override
-    public Forecast build(final ContentValues values) {
-        final Forecast f = new Forecast();
 
-        Long id = values.getAsLong(ID.getName());
-        if (id != null) {
-            f.setId(id);
+    private Map<String, Integer> mCursorCols;
+
+    @Override
+    public Forecast build(final Cursor cursor) {
+        if (mCursorCols == null) {
+            mCursorCols = buildCursorCols(cursor);
         }
 
-        values.getAsString(DATE_STR.getName());
+        final Forecast f = new Forecast();
+        f.setId(cursor.getLong(mCursorCols.get(ID.getName())));
+        f.setDateStr(cursor.getString(mCursorCols.get(DATE_STR.getName())));
 
-        String desc = values.getAsString(DESCRIPTION.getName());
+        String desc = cursor.getString(mCursorCols.get(DESCRIPTION.getName()));
         if (!TextUtils.isEmpty(desc)) {
             WeatherDescription description = new WeatherDescription();
             description.setValue(desc);
             f.addWeatherDescriptionLine(description);
         }
 
-
-        Long date = values.getAsLong(DATE.getName());
-        if (date != null) {
-            f.setDate(date);
-        }
-
-        Float max = values.getAsFloat(MAX_TEMP.getName());
-        if (max != null) {
-            f.setMaxTemp(max);
-        }
-
-        Float min = values.getAsFloat(MIN_TEMP.getName());
-        if (min != null) {
-            f.setMinTemp(min);
-        }
-
-        Integer weatherCode = values.getAsInteger(WEATHER_CODE.getName());
-        if (weatherCode != null) {
-            f.setWeatherCode(weatherCode);
-        }
-
-        Integer windDir = values.getAsInteger(WIND_DIR_ANGLE.getName());
-        if (windDir != null) {
-            f.setWindDirectionAngle(windDir);
-        }
-
-        Integer windSpeed = values.getAsInteger(WIND_SPEED.getName());
-        if (windSpeed != null) {
-            f.setWindSpeed(windSpeed);
-        }
-
-        Integer windDirCode = values.getAsInteger(WIND_DIR_CODE.getName());
-        if (windDirCode != null) {
-            f.setWindDirectionCode(EnumUtils.from(WindDirection.class, windDirCode));
-        }
+        f.setDate(cursor.getLong(mCursorCols.get(DATE.getName())));
+        f.setMaxTemp(cursor.getFloat(mCursorCols.get(MAX_TEMP.getName())));
+        f.setMinTemp(cursor.getFloat(mCursorCols.get(MIN_TEMP.getName())));
+        f.setWeatherCode(cursor.getInt(mCursorCols.get(WEATHER_CODE.getName())));
+        f.setWindDirectionAngle(cursor.getInt(mCursorCols.get(WIND_DIR_ANGLE.getName())));
+        f.setWindSpeed(cursor.getInt(mCursorCols.get(WIND_SPEED.getName())));
+        f.setWindDirectionCode(EnumUtils.from(WindDirection.class,
+                cursor.getInt(mCursorCols.get(WIND_DIR_CODE.getName()))));
 
         return f;
     }
 
     @Override
     public ContentValues convert(final Forecast forecast) {
-        return null;
+        final StringBuilder desc = new StringBuilder();
+        if (forecast.getWeatherDescription() != null) {
+            for (int i = 0, size = forecast.getWeatherDescription().size(); i < size; i++) {
+                if (i != 0) {
+                    desc.append('\n');
+                }
+                desc.append(forecast.getWeatherDescription().get(i).getValue());
+            }
+        }
+
+        return new ContentValuesBuilder()
+                .put(ID, forecast.getId())
+                .put(DATE_STR, forecast.getDateStr())
+                .put(DATE, forecast.getDate())
+                .put(MAX_TEMP, forecast.getMaxTemp())
+                .put(MIN_TEMP, forecast.getMinTemp())
+                .put(DESCRIPTION, desc.toString())
+                .put(WEATHER_CODE, forecast.getWeatherCode())
+                .put(WIND_DIR_CODE, forecast.getWindDirectionCode())
+                .put(WIND_DIR_ANGLE, forecast.getWindDirectionAngle())
+                .put(WIND_SPEED, forecast.getWindSpeed())
+                .build();
+    }
+
+    private static Map<String, Integer> buildCursorCols(final Cursor cursor) {
+        Map<String, Integer> retval = new ConcurrentHashMap<>();
+        for (int i = 0, len = cursor.getColumnCount(); i < len; i++) {
+            retval.put(cursor.getColumnName(i), i);
+        }
+
+        return retval;
     }
 }

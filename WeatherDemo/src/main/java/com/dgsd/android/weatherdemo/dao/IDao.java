@@ -1,6 +1,7 @@
 package com.dgsd.android.weatherdemo.dao;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
 /**
  * Converts objects between their java and
@@ -11,10 +12,10 @@ public interface IDao<T> {
     /**
      * Convert the given content values into a java object
      *
-     * @param values The database values holding the object data
+     * @param cursor Cursor holding the object data
      * @return An object constructed from <code>values</code>
      */
-    public T build(ContentValues values);
+    public T build(Cursor cursor);
 
     /**
      * Convert the given object into its database representation

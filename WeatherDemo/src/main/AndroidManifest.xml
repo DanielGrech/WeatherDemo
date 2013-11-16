@@ -23,8 +23,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".service.ApiExecutorService"/>
+        <provider
+                android:authorities="com.dgsd.android.weatherdemo.data.WeatherContentProvider"
+                android:name=".data.WeatherContentProvider" />
+
         <receiver android:name=".receiver.ApiBroadcastReceiver"/>
+
+        <service android:name=".service.ApiExecutorService"/>
     </application>
 
 </manifest>

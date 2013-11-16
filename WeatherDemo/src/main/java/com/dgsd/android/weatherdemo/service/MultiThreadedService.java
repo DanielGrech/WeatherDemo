@@ -31,10 +31,11 @@ public abstract class MultiThreadedService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        mServiceLoopers = new ArrayList<Looper>();
-        mServiceHandlers = new ArrayList<ServiceHandler>();
+        mServiceLoopers = new ArrayList<>();
+        mServiceHandlers = new ArrayList<>();
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void onStart(Intent intent, int startId) {
         HandlerThread thread = new HandlerThread("IntentService[" + mName + " - " + startId + "]");

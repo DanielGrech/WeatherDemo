@@ -1,10 +1,9 @@
 package com.dgsd.android.weatherdemo.modules;
 
+import android.content.Context;
 import com.dgsd.android.weatherdemo.BuildConfig;
-import com.dgsd.android.weatherdemo.api.ApiManager;
-import com.dgsd.android.weatherdemo.api.IApiManager;
-import com.dgsd.android.weatherdemo.api.IPersistenceManager;
-import com.dgsd.android.weatherdemo.api.WeatherApi;
+import com.dgsd.android.weatherdemo.WeatherApp;
+import com.dgsd.android.weatherdemo.api.*;
 import com.dgsd.android.weatherdemo.service.ApiExecutorService;
 import dagger.Module;
 import dagger.Provides;
@@ -16,10 +15,11 @@ import javax.inject.Singleton;
 /**
  * Provides access to the WeatherWorld API
  */
-@Module (
-    injects = {
-            ApiExecutorService.class
-    }
+@Module(
+        injects = {
+                ApiExecutorService.class
+        },
+        complete = false
 )
 public class ApiModule {
 
@@ -46,8 +46,8 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    public IPersistenceManager providesPersistenceManager() {
-        return null;
+    public IPersistenceManager providesPersistenceManager(WeatherApp app) {
+        return new PersistenceManager(app);
     }
 
     @Provides

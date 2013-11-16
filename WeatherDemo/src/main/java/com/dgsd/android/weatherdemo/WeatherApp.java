@@ -23,7 +23,7 @@ public class WeatherApp extends Application {
             Timber.plant(new ReleaseLogger(getClass().getSimpleName()));
         }
 
-        mObjectGraph = ObjectGraph.create(DiModules.asList());
+        mObjectGraph = ObjectGraph.create(DiModules.asList(this));
     }
 
     public void inject(Object obj, Object... extraModules) {

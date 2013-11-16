@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.dgsd.android.weatherdemo.WeatherApp;
 import com.dgsd.android.weatherdemo.api.IApiManager;
 import com.dgsd.android.weatherdemo.api.IPersistenceManager;
+import com.dgsd.android.weatherdemo.data.WeatherContentProvider;
 import com.dgsd.android.weatherdemo.model.Forecast;
 import com.dgsd.android.weatherdemo.modules.ApiModule;
 import timber.log.Timber;
@@ -45,7 +46,8 @@ public class ApiExecutorService extends BaseApiService {
 
                 if (forecasts != null && !forecasts.isEmpty()) {
                     Timber.d("Got %d forecasts", forecasts.size());
-//                  mPersistenceManager.persistForecasts(forecasts);
+                    mPersistenceManager.persistForecasts(forecasts);
+                    getContentResolver().notifyChange(WeatherContentProvider.FORECAST_LOADER_URI, null, false);
                 }
 
                 break;
