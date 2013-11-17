@@ -14,17 +14,20 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- *
+ * Loader which retrieves results from the local database and transforms
+ * them into a format useable by the app.
  */
 public class ForecastLoader extends AsyncLoader<List<Forecast>> {
 
+    /**
+     * Comparator which sorts by forecast date
+     */
     private static Comparator<Forecast> DATE_COMPARATOR = new Comparator<Forecast>() {
         @Override
         public int compare(final Forecast lhs, final Forecast rhs) {
             return Long.compare(lhs.getDate(), rhs.getDate());
         }
     };
-
 
     public ForecastLoader(final Context context) {
         super(context);

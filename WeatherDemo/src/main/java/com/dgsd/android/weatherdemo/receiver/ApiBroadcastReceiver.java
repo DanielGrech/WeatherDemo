@@ -20,12 +20,33 @@ public abstract class ApiBroadcastReceiver extends BroadcastReceiver {
 
     private Set<String> mAcceptableTokens = new HashSet<>();
 
+    /**
+     * Called when a new API request has started
+     *
+     * @param token The kind of request being executed
+     */
     protected abstract void onStart(String token);
 
+    /**
+     * Called when an API request has finished
+     *
+     * @param token The kind of request that finished
+     */
     protected abstract void onFinish(String token);
 
+    /**
+     * Called when there is an error with an API request
+     *
+     * @param token    The kind of request which caused an error
+     * @param errorMsg The human-readable error message representing the problem
+     */
     protected abstract void onError(String token, String errorMsg);
 
+    /**
+     * Start listening for API events
+     *
+     * @param context
+     */
     public void register(Context context) {
         final IntentFilter filter = new IntentFilter();
         filter.addAction(ApiExecutorService.ACTION_API_START);
@@ -34,10 +55,20 @@ public abstract class ApiBroadcastReceiver extends BroadcastReceiver {
         LocalBroadcastManager.getInstance(context).registerReceiver(this, filter);
     }
 
+    /**
+     * Cease listening to API events
+     *
+     * @param context
+     */
     public void unregister(Context context) {
         LocalBroadcastManager.getInstance(context).unregisterReceiver(this);
     }
 
+    /**
+     * Accept broadcasts of type <code>token</code>
+     *
+     * @param token The kind of broadcast to accept
+     */
     public void addAcceptableToken(String token) {
         mAcceptableTokens.add(token);
     }
@@ -47,6 +78,7 @@ public abstract class ApiBroadcastReceiver extends BroadcastReceiver {
      */
     private int mRunningCounter = 0;
 
+    @Override
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
         final String token = intent.getStringExtra(ApiExecutorService.EXTRA_TOKEN);

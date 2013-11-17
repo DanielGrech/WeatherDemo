@@ -5,7 +5,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- *
+ * Provides injection of our global {@link android.app.Application} object
  */
 @Module(
         library = true

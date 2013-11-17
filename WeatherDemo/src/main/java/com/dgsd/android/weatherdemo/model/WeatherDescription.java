@@ -5,7 +5,7 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 /**
- *
+ * Forecast description
  */
 public class WeatherDescription implements Parcelable {
 

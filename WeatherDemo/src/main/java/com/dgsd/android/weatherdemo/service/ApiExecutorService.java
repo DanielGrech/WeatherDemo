@@ -54,10 +54,23 @@ public class ApiExecutorService extends BaseApiService {
         }
     }
 
+    /**
+     * Fires off asynchronous requests for API calls
+     */
     public static class AsyncRequest {
 
         public static final String ACTION_GET_WEATHER = "get_weather";
 
+        /**
+         * Asynchronously Retreive forecasts for <code>location</code> for the next <code>numDays</code>
+         *
+         * @param context
+         * @param location The location of the forecasts to retrieve
+         * @param numDays  The number of days the forecast should be retrieved for. This must be less
+         *                 than {@link com.dgsd.android.weatherdemo.api.WeatherApi.MAX_NUM_DAYS}
+         * @return A token which can be used with an {@link com.dgsd.android.weatherdemo.receiver.ApiBroadcastReceiver}
+         * to listen for results
+         */
         public static String getWeather(Context context, String location, int numDays) {
             final Intent intent = new Intent(context, ApiExecutorService.class);
             intent.setAction(ACTION_GET_WEATHER);

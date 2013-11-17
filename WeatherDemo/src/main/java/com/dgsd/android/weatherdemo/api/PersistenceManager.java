@@ -9,7 +9,7 @@ import com.dgsd.android.weatherdemo.util.ProviderUtils;
 import java.util.List;
 
 /**
- *
+ * Default implementation of {@link com.dgsd.android.weatherdemo.api.IPersistenceManager}
  */
 public class PersistenceManager implements IPersistenceManager {
 

@@ -2,12 +2,11 @@ package com.dgsd.android.weatherdemo.api;
 
 import com.dgsd.android.weatherdemo.model.Forecast;
 import com.dgsd.android.weatherdemo.model.WeatherResponse;
-import timber.log.Timber;
 
 import java.util.List;
 
 /**
- *
+ * Default implementation of {@link com.dgsd.android.weatherdemo.api.IApiManager}
  */
 public class ApiManager implements IApiManager {
 

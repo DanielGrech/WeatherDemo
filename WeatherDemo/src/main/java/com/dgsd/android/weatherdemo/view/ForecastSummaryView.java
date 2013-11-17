@@ -18,7 +18,7 @@ import com.dgsd.android.weatherdemo.util.WeatherIconManager;
 import com.larvalabs.svgandroid.SVGParser;
 
 /**
- *
+ * Displays the information from a single forecast in a concise way
  */
 public class ForecastSummaryView extends LinearLayout {
 
@@ -50,6 +50,11 @@ public class ForecastSummaryView extends LinearLayout {
         mImage.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 
+    /**
+     * Populate the view with the information found in <code>forecast</code>
+     *
+     * @param forecast The forecast to represent in the view
+     */
     public void populate(Forecast forecast) {
         mTemperature.setText(getContext().getString(R.string.x_degrees, (int) forecast.getMaxTemp()));
 
@@ -67,6 +72,11 @@ public class ForecastSummaryView extends LinearLayout {
         }
     }
 
+    /**
+     * @param dayOfWeek The day of the week [0-6] of the weekday to retrieve
+     * @return A string representing the given weekday
+     * @see {@link android.text.format.Time}
+     */
     private String getDayString(int dayOfWeek) {
         final String[] daysArr = getContext().getResources().getStringArray(R.array.days_of_week_abbrev);
         return daysArr[dayOfWeek];

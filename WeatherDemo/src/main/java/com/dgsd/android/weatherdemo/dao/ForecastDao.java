@@ -22,6 +22,10 @@ import static com.dgsd.android.weatherdemo.data.Db.Field.*;
  */
 public class ForecastDao implements IDao<Forecast> {
 
+    /**
+     * Holds a mapping from column name --> index so we can avoid
+     * doing repeated lookups
+     */
     private Map<String, Integer> mCursorCols;
 
     @Override
@@ -76,6 +80,12 @@ public class ForecastDao implements IDao<Forecast> {
         return builder.build();
     }
 
+    /**
+     * Populates a mapping of column name --> index
+     *
+     * @param cursor The cursor to extract
+     * @return The newly created mapping
+     */
     private static Map<String, Integer> buildCursorCols(final Cursor cursor) {
         Map<String, Integer> retval = new ConcurrentHashMap<>();
         for (int i = 0, len = cursor.getColumnCount(); i < len; i++) {

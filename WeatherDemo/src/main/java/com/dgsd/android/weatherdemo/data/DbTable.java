@@ -2,6 +2,11 @@ package com.dgsd.android.weatherdemo.data;
 
 import android.text.TextUtils;
 
+/**
+ * Represents a database table in the app.
+ *
+ * Also contains useful helper methods for table construction
+ */
 public class DbTable {
  
     final String mName;

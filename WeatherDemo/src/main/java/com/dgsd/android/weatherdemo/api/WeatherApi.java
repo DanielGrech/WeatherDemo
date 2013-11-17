@@ -6,10 +6,13 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
- * Created by daniel on 16/11/2013.
+ * Encapsulates the WeatherWorldOnline API
  */
 public interface WeatherApi {
 
+    /**
+     * The maximum number of future days the API supports for fetching forecasts
+     */
     public static final int MAX_NUM_DAYS = 5;
 
     /**

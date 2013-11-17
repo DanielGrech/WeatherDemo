@@ -9,7 +9,7 @@ import com.dgsd.android.weatherdemo.model.Forecast;
 import javax.inject.Inject;
 
 /**
- * Created by daniel on 17/11/2013.
+ * Provides a single point of conversion for all dao-related objects
  */
 public class DaoUtils {
 

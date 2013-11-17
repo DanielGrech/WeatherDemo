@@ -3,7 +3,7 @@ package com.dgsd.android.weatherdemo.util;
 import android.text.TextUtils;
 
 /**
- * Created by daniel on 16/11/2013.
+ * Helper methods for dealing with java enums
  */
 public class EnumUtils {
 

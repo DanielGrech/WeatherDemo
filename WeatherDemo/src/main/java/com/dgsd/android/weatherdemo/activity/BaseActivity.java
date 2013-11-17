@@ -10,8 +10,10 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
+import static com.dgsd.android.weatherdemo.service.ApiExecutorService.AsyncRequest;
+
 /**
- *
+ * Base class for all activities in the app
  */
 public class BaseActivity extends Activity {
     @Inject
@@ -19,6 +21,9 @@ public class BaseActivity extends Activity {
 
     protected WeatherApp mApp;
 
+    /**
+     * Catches API-related broadcasts
+     */
     private ApiBroadcastReceiver mApiReceiver = new ApiBroadcastReceiver() {
         @Override
         protected void onStart(final String token) {
@@ -72,10 +77,20 @@ public class BaseActivity extends Activity {
         //No-op
     }
 
+    /**
+     * Listen out for API broadcasts of type <code>token</code>
+     *
+     * @param token The token returned from a method in {@link AsyncRequest}
+     */
     protected void registerForApi(String token) {
         mApiReceiver.addAcceptableToken(token);
     }
 
+    /**
+     * @param id  The id of the fragment to retrieve
+     * @param <T> A {@link Fragment} subclass
+     * @return The fragment with id <code>id</code>, or null if it doesn't exist
+     */
     protected <T extends Fragment> T findFragment(int id) {
         return (T) getFragmentManager().findFragmentById(id);
     }

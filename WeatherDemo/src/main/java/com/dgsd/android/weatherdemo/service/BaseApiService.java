@@ -4,11 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import com.dgsd.android.weatherdemo.model.Forecast;
 import timber.log.Timber;
 
-import java.util.List;
-
+/**
+ * Encapsulates the logic to broadcast API results to other parts of the application
+ */
 public abstract class BaseApiService extends MultiThreadedService {
 
     public static final String ACTION_API_START = "api_start";

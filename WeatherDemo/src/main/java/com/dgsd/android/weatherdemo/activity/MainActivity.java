@@ -18,6 +18,9 @@ public class MainActivity extends BaseActivity {
 
     private ForecastFragment mForecastFragment;
 
+    /**
+     * Tracks weather or not we have made our network request for new forecasts
+     */
     private boolean mHasMadeForecastRequest;
 
     protected void onCreate(final Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivity {
         mEventBus.register(this);
 
         if (!mHasMadeForecastRequest) {
+            //TODO: Sydney is hardcoded at the moment .. need to support picking multiple cities
             registerForApi(ApiExecutorService.AsyncRequest.getWeather(this,
                     "Sydney",
                     WeatherApi.MAX_NUM_DAYS));
@@ -61,7 +65,7 @@ public class MainActivity extends BaseActivity {
     @Subscribe
     @SuppressWarnings("unused")
     public void onShowFullViewToggled(ForecastFragment.OnFullViewToggleEvent event) {
-        if(event.fullViewVisible) {
+        if (event.fullViewVisible) {
             getActionBar().show();
         } else {
             getActionBar().hide();

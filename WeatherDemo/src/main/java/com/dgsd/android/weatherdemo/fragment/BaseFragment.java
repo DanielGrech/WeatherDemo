@@ -10,7 +10,7 @@ import com.squareup.otto.Bus;
 import javax.inject.Inject;
 
 /**
- * Created by daniel on 17/11/2013.
+ * Base class for all fragments in the app
  */
 public class BaseFragment extends Fragment {
 
@@ -25,6 +25,12 @@ public class BaseFragment extends Fragment {
         app.inject(this);
     }
 
+    /**
+     * Reload the data from a loader
+     *
+     * @param loaderId  The id of the loader to reload
+     * @param callbacks The callback to be invoked by the underlying loader
+     */
     protected void reload(int loaderId, LoaderManager.LoaderCallbacks callbacks) {
         final Loader loader = getLoaderManager().getLoader(loaderId);
         if (loader == null) {

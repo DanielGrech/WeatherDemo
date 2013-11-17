@@ -56,6 +56,11 @@ public class Db extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Execute a given against each table in the database
+     *
+     * @param runnable The task to perform
+     */
     private void runForEachTable(TableRunnable runnable) {
         java.lang.reflect.Field[] declaredFields = Db.Table.class.getDeclaredFields();
         for (java.lang.reflect.Field field : declaredFields) {
@@ -69,10 +74,21 @@ public class Db extends SQLiteOpenHelper {
         }
     }
 
+    /**
+     * Encapsulates a task to be run against a table
+     */
     private interface TableRunnable {
+        /**
+         * Execute the request task
+         *
+         * @param table The table to execute the task on
+         */
         public void run(DbTable table);
     }
 
+    /**
+     * Database fields used in the app
+     */
     public static class Field {
         private Field() {
         }
@@ -89,6 +105,9 @@ public class Db extends SQLiteOpenHelper {
         public static final DbField WIND_SPEED = new DbField("wind_speed", "integer");
     }
 
+    /**
+     * Application database tables
+     */
     public static class Table {
         private Table() {
         }

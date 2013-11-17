@@ -1,5 +1,8 @@
 package com.dgsd.android.weatherdemo.data;
 
+/**
+ * Represents a database field in the app.
+ */
 public class DbField {
     private final String mName;
     private final String mType;

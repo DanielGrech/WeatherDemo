@@ -7,17 +7,21 @@ import android.graphics.Picture;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
-import android.widget.ImageView;
 import com.dgsd.android.weatherdemo.R;
 import com.dgsd.android.weatherdemo.api.WeatherCodeMap;
 import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParser;
 
 /**
- * Created by daniel on 17/11/2013.
+ * Helper class to make displaying the correct icon for a given weather code easier
  */
 public class WeatherIconManager {
 
+    /**
+     * @param context
+     * @param weatherCode The weather code to retrieve an icon for
+     * @return A drawable for the given weather code, or null if there is none
+     */
     public static Drawable get(Context context, int weatherCode) {
         int imageRes = -1;
         switch (WeatherCodeMap.getGroup(weatherCode)) {
@@ -57,6 +61,13 @@ public class WeatherIconManager {
         }
     }
 
+    /**
+     * Retrieve a drawable from a raw (<code>R.raw.*</code>) resource pointing to an SVG
+     *
+     * @param context
+     * @param imageRes The raw resource id to retrieve
+     * @return A drawable representing the SVG
+     */
     public static Drawable getSvgDrawable(final Context context, final int imageRes) {
         final SVG svg = SVGParser.getSVGFromResource(context.getResources(), imageRes);
         Picture picture = svg.getPicture();

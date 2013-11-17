@@ -1,6 +1,9 @@
 package com.dgsd.android.weatherdemo;
 
 import android.app.Application;
+import com.dgsd.android.weatherdemo.modules.AppModule;
+import com.dgsd.android.weatherdemo.modules.DaoModule;
+import com.dgsd.android.weatherdemo.modules.OttoModule;
 import com.dgsd.android.weatherdemo.util.ReleaseLogger;
 import dagger.ObjectGraph;
 import timber.log.Timber;
@@ -23,13 +26,30 @@ public class WeatherApp extends Application {
             Timber.plant(new ReleaseLogger(getClass().getSimpleName()));
         }
 
-        mObjectGraph = ObjectGraph.create(DiModules.asList(this));
+        mObjectGraph = ObjectGraph.create(getDiModules());
         mObjectGraph.injectStatics();
     }
 
+    /**
+     * The base set of DI modules to inject app components with
+     */
+    private Object[] getDiModules() {
+        return new Object[]{
+                new AppModule(this),
+                new OttoModule(),
+                new DaoModule()
+        };
+    }
+
+    /**
+     * Inject the given object
+     *
+     * @param obj          The obejct to inject
+     * @param extraModules Any additional modules to include in the injection
+     */
     public void inject(Object obj, Object... extraModules) {
         ObjectGraph og = mObjectGraph;
-        if(extraModules != null && extraModules.length > 0) {
+        if (extraModules != null && extraModules.length > 0) {
             og = mObjectGraph.plus(extraModules);
         }
         og.inject(obj);
