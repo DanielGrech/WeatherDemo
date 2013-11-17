@@ -43,6 +43,9 @@ public class ForecastFragment extends BaseFragment implements LoaderManager.Load
     @InjectView(R.id.todays_date)
     protected TextView mTodaysDate;
 
+    @InjectView(R.id.todays_weather_description)
+    protected TextView mTodaysDescription;
+
     @InjectView(R.id.wind_dir_wrapper)
     protected ViewGroup mWindDirWrapper;
 
@@ -172,7 +175,7 @@ public class ForecastFragment extends BaseFragment implements LoaderManager.Load
                 .setInterpolator(ANIM_DECELERATE_INTERPOLATOR);
 
         mWindDirWrapper.animate()
-                .alpha(0)
+                .alpha(0f)
                 .setStartDelay(100)
                 .setInterpolator(ANIM_DECELERATE_INTERPOLATOR);
 
@@ -237,6 +240,7 @@ public class ForecastFragment extends BaseFragment implements LoaderManager.Load
         }
 
         //On our first load, let's do a nice animation!
+        final String desc = today.buildWeatherDescription();
         final String todaysMaxStr = getString(R.string.x_degrees, (int) today.getMaxTemp());
         if (TextUtils.isEmpty(mTodaysMax.getText())) {
             mTodaysMax.setAlpha(0f);
@@ -253,10 +257,24 @@ public class ForecastFragment extends BaseFragment implements LoaderManager.Load
                         @Override
                         public void onAnimationEnd(final Animator animation) {
                             mTodaysMax.setText(todaysMaxStr);
+
+                            if (TextUtils.isEmpty(desc)) {
+                                mTodaysDescription.setVisibility(View.INVISIBLE);
+                            } else {
+                                mTodaysDescription.setText(desc);
+                                mTodaysDescription.setVisibility(View.VISIBLE);
+                            }
                         }
                     }).start();
         } else {
             mTodaysMax.setText(todaysMaxStr);
+
+            if (TextUtils.isEmpty(desc)) {
+                mTodaysDescription.setVisibility(View.INVISIBLE);
+            } else {
+                mTodaysDescription.setText(desc);
+                mTodaysDescription.setVisibility(View.VISIBLE);
+            }
         }
     }
 

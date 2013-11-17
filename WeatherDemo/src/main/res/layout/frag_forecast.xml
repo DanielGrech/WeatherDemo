@@ -8,46 +8,12 @@
         android:layout_height="match_parent"
         android:layout_gravity="center">
 
-    <TextView
-            android:id="@+id/todays_weather"
-            android:textSize="@dimen/todays_weather_text_size"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:shadowDx="-1"
-            android:shadowDy="-1"
-            android:shadowRadius="1"
-            android:shadowColor="@color/translucent_black"
-            android:background="@null"
-            style="@style/PrimaryText"/>
-
-    <TextView
-            android:id="@+id/todays_weather_subtext"
-            android:layout_below="@id/todays_weather"
-            android:layout_alignRight="@id/todays_weather"
-            android:textSize="@dimen/todays_weather_subtext_size"
-            android:layout_marginTop="-24dp"
-            android:textAllCaps="true"
-            android:fontFamily="sans-serif-light"
-            style="@style/PrimaryText"/>
-
-    <TextView
-            android:id="@+id/todays_date"
-            android:layout_above="@id/todays_weather"
-            android:layout_alignLeft="@id/todays_weather"
-            android:textSize="@dimen/todays_weather_subtext_size"
-            android:layout_marginBottom="-24dp"
-            android:text="@string/today"
-            android:textAllCaps="true"
-            android:fontFamily="sans-serif-light"
-            style="@style/PrimaryText"/>
-
     <include
             android:id="@+id/forecast_summary_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/forecast_summary_height"
-            android:layout_marginTop="48dp"
-            android:layout_below="@id/todays_weather_subtext"
+            android:layout_alignParentBottom="true"
             layout="@layout/forecast_summary_group"/>
 
     <LinearLayout
@@ -83,5 +49,59 @@
                 android:scaleType="fitCenter"/>
 
     </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/forecast_summary_group"
+            android:layout_below="@id/wind_dir_wrapper"
+            android:layout_gravity="center">
+
+        <TextView
+                android:id="@+id/todays_weather"
+                android:textSize="@dimen/todays_weather_text_size"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:shadowDx="-1"
+                android:shadowDy="-1"
+                android:shadowRadius="1"
+                android:shadowColor="@color/translucent_black"
+                android:background="@null"
+                style="@style/PrimaryText"/>
+
+        <TextView
+                android:id="@+id/todays_weather_subtext"
+                android:layout_below="@id/todays_weather"
+                android:layout_alignRight="@id/todays_weather"
+                android:textSize="@dimen/todays_weather_subtext_size"
+                android:layout_marginTop="-24dp"
+                android:textAllCaps="true"
+                android:fontFamily="sans-serif-light"
+                style="@style/PrimaryText"/>
+
+        <TextView
+                android:id="@+id/todays_weather_description"
+                android:layout_below="@id/todays_weather_subtext"
+                android:layout_alignRight="@id/todays_weather"
+                android:textSize="@dimen/todays_weather_subtext_size"
+                android:fontFamily="sans-serif-light"
+                android:textColor="@color/light_text"
+                android:visibility="invisible"
+                style="@style/PrimaryText"/>
+
+
+        <TextView
+                android:id="@+id/todays_date"
+                android:layout_above="@id/todays_weather"
+                android:layout_alignLeft="@id/todays_weather"
+                android:textSize="@dimen/todays_weather_subtext_size"
+                android:layout_marginBottom="-24dp"
+                android:text="@string/today"
+                android:textAllCaps="true"
+                android:fontFamily="sans-serif-light"
+                style="@style/PrimaryText"/>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
