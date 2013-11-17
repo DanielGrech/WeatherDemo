@@ -3,6 +3,8 @@ WeatherDemo
 
 Simple Android app to display weather. Showcases some useful dev techniques and classes.
 
+Video in action on [youtube][4]
+
 Todo
 -----
 - Automated tests
@@ -38,3 +40,4 @@ License
 [1]: http://dribbble.com/shots/487717-iPhone-Weather-App?
 [2]: http://dribbble.com/shots/544084-Climacons
 [3]: https://github.com/DanielGrech/WeatherDemo/blob/master/WeatherDemo/build.gradle
+[4]: http://www.youtube.com/watch?v=dOa4PjH-smQ
