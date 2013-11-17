@@ -9,11 +9,16 @@ import android.text.TextUtils;
 import com.dgsd.android.weatherdemo.R;
 import com.dgsd.android.weatherdemo.service.ApiExecutorService;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Catches broadcasts sent at different lifecycle events
  * of Api requests as executed by {@link com.dgsd.android.weatherdemo.service.ApiExecutorService}
  */
 public abstract class ApiBroadcastReceiver extends BroadcastReceiver {
+
+    private Set<String> mAcceptableTokens = new HashSet<>();
 
     protected abstract void onStart(String token);
 
@@ -33,6 +38,10 @@ public abstract class ApiBroadcastReceiver extends BroadcastReceiver {
         LocalBroadcastManager.getInstance(context).unregisterReceiver(this);
     }
 
+    public void addAcceptableToken(String token) {
+        mAcceptableTokens.add(token);
+    }
+
     /**
      * Reference counter for the number of requests currently executing
      */
@@ -40,7 +49,8 @@ public abstract class ApiBroadcastReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         final String action = intent.getAction();
-        if (action != null) {
+        final String token = intent.getStringExtra(ApiExecutorService.EXTRA_TOKEN);
+        if (action != null && token != null && mAcceptableTokens.contains(token)) {
             switch (action) {
                 case ApiExecutorService.ACTION_API_START:
                     mRunningCounter++;

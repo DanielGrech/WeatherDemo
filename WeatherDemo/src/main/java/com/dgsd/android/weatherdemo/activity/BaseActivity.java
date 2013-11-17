@@ -1,6 +1,7 @@
 package com.dgsd.android.weatherdemo.activity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Window;
 import com.dgsd.android.weatherdemo.WeatherApp;
@@ -37,18 +38,6 @@ public class BaseActivity extends Activity {
         }
     };
 
-    protected void onApiRequestStart(String action) {
-        //No-op
-    }
-
-    protected void onApiRequestFinish(String action) {
-        //No-op
-    }
-
-    protected void onApiRequestError(String action, String errorMsg) {
-        //No-op
-    }
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,5 +58,25 @@ public class BaseActivity extends Activity {
     protected void onPause() {
         super.onPause();
         mApiReceiver.unregister(this);
+    }
+
+    protected void onApiRequestStart(String action) {
+        //No-op
+    }
+
+    protected void onApiRequestFinish(String action) {
+        //No-op
+    }
+
+    protected void onApiRequestError(String action, String errorMsg) {
+        //No-op
+    }
+
+    protected void registerForApi(String token) {
+        mApiReceiver.addAcceptableToken(token);
+    }
+
+    protected <T extends Fragment> T findFragment(int id) {
+        return (T) getFragmentManager().findFragmentById(id);
     }
 }

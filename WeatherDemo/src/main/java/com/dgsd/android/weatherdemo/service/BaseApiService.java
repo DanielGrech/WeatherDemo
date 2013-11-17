@@ -16,6 +16,7 @@ public abstract class BaseApiService extends MultiThreadedService {
     public static final String ACTION_API_ERROR = "api_error";
 
     public static final String EXTRA_ERROR_MESSAGE = "error_message";
+    public static final String EXTRA_TOKEN = "token";
 
     protected abstract void handleApiRequest(String token, Bundle extras);
 
@@ -29,29 +30,34 @@ public abstract class BaseApiService extends MultiThreadedService {
         if (!TextUtils.isEmpty(action)) {
 
             try {
-                sendStartBroadcast();
+                sendStartBroadcast(action);
                 handleApiRequest(action, intent.getExtras());
             } catch (Throwable t) {
                 //TODO: Do a better job handling errors (Catch specific exceptions , User-friendly error messages)
                 Timber.e(t, "Error executing API request");
-                sendErrorBroadcast(t.getMessage());
+                sendErrorBroadcast(action, t.getMessage());
             } finally {
-                sendFinishBroadcast();
+                sendFinishBroadcast(action);
             }
         }
     }
 
-    private void sendStartBroadcast() {
-        broadcast(new Intent(ACTION_API_START));
+    private void sendStartBroadcast(String token) {
+        Intent intent = new Intent(ACTION_API_START);
+        intent.putExtra(EXTRA_TOKEN, token);
+        broadcast(intent);
     }
 
-    private void sendFinishBroadcast() {
-        broadcast(new Intent(ACTION_API_FINISH));
+    private void sendFinishBroadcast(String token) {
+        Intent intent = new Intent(ACTION_API_FINISH);
+        intent.putExtra(EXTRA_TOKEN, token);
+        broadcast(intent);
     }
 
-    private void sendErrorBroadcast(String errorMessage) {
+    private void sendErrorBroadcast(String token, String errorMessage) {
         final Intent intent = new Intent(ACTION_API_ERROR);
         intent.putExtra(EXTRA_ERROR_MESSAGE, errorMessage);
+        intent.putExtra(EXTRA_TOKEN, token);
         broadcast(intent);
     }
 

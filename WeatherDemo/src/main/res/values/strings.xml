@@ -1,4 +1,63 @@
 <resources>
-    <string name="app_name">Weather Demo</string>
+    <string name="app_name">Weather</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="light_drizzle">Light Drizzle</string>
+    <string name="patchy_light_drizzle">Patchy light drizzle</string>
+    <string name="freezing_fog">Freezing fog</string>
+    <string name="fog">Fog</string>
+    <string name="blizzard">Blizzard</string>
+    <string name="blowing_snow">Blowing snow</string>
+    <string name="thundery_outbreaks">Thundery outbreaks in nearby</string>
+    <string name="mist">Mist</string>
+    <string name="cloudy">Cloudy</string>
+    <string name="partly_cloudy">Partly Cloudy</string>
+    <string name="sunny">Sunny</string>
+    <string name="overcast">Overcast</string>
+    <string name="patchy_rain_nearby">Patchy rain nearby</string>
+    <string name="patch_snow_nearby">Patchy snow nearby</string>
+    <string name="patchy_sleet_nearby">Patchy sleet nearby</string>
+    <string name="patch_freezing_drizzle_nearby">Patchy freezing drizzle nearby</string>
+    <string name="hail">Hail</string>
+    <string name="light_shower">Light rain shower</string>
+    <string name="moderate_to_heavy_rain">Moderate to heavy rain</string>
+    <string name="torrential_rain">Torrential rain</string>
+    <string name="light_sleet_showers">Light sleet shower</string>
+    <string name="heavy_sleet_showers">Heavy sleet showers</string>
+    <string name="light_snow_fall">Light snow fall</string>
+    <string name="freezing_drizzle">Freezing drizzle</string>
+    <string name="heavy_freezing_drizzle">Heavy freezing drizzle</string>
+    <string name="patchy_light_rain">Patchy light rain</string>
+    <string name="light_rain">Light rain</string>
+    <string name="moderate_rain_at_times">Moderate rain at times</string>
+    <string name="moderate_rain">Moderate rain</string>
+    <string name="heavy_rain_at_times">Heavy rain at times</string>
+    <string name="heavy_rain">Heavy rain</string>
+    <string name="light_freezing_rain">Light freezing rain</string>
+    <string name="moderate_freezing_rain">Moderate freezing rain</string>
+    <string name="light_sleet">Light sleet</string>
+    <string name="heavy_snow">Heavy snow</string>
+    <string name="patchy_heavy_snow">Patchy heavy snow</string>
+    <string name="moderate_snow">Moderate snow</string>
+    <string name="light_snow">Light snow</string>
+    <string name="patchy_light_snow">Patchy light snow</string>
+    <string name="moderate_sleet">Moderate sleet</string>
+    <string name="light_rain_with_thunder">Light rain with thunder</string>
+    <string name="heavy_snow_with_thunder">Heavy snow with thunder</string>
+    <string name="light_snow_with_thunder">Light snow with thunder</string>
+    <string name="heavy_rain_with_thunder">Heavy rain with thunder</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="x_degrees">%1$d°</string>
+    <string name="max_x_degrees_min">max / %1$d°C min</string>
+    <string name="x_kmph">%1$d kmph</string>
+
+    <string-array name="days_of_week_abbrev">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
 </resources>

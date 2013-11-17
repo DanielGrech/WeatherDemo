@@ -59,7 +59,7 @@ public class Db extends SQLiteOpenHelper {
     private void runForEachTable(TableRunnable runnable) {
         java.lang.reflect.Field[] declaredFields = Db.Table.class.getDeclaredFields();
         for (java.lang.reflect.Field field : declaredFields) {
-            if (Modifier.isStatic(field.getModifiers()) && field.getClass().equals(DbTable.class)) {
+            if (Modifier.isStatic(field.getModifiers()) && field.getType().equals(DbTable.class)) {
                 try {
                     runnable.run((DbTable) field.get(null));
                 } catch (IllegalAccessException e) {

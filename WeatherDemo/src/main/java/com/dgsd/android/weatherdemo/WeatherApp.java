@@ -24,6 +24,7 @@ public class WeatherApp extends Application {
         }
 
         mObjectGraph = ObjectGraph.create(DiModules.asList(this));
+        mObjectGraph.injectStatics();
     }
 
     public void inject(Object obj, Object... extraModules) {

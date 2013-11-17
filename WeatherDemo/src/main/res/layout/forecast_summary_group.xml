@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/forecast_summary_height"
+        android:showDividers="middle"
+        android:dividerPadding="4dp"
+        android:divider="?android:attr/dividerVertical">
+
+    <include
+            android:id="@+id/forecast1"
+            style="@style/ForecastSummaryGroupItem"
+            layout="@layout/forecast_summary"/>
+
+    <include
+            android:id="@+id/forecast2"
+            style="@style/ForecastSummaryGroupItem"
+            layout="@layout/forecast_summary"/>
+
+    <include
+            android:id="@+id/forecast3"
+            style="@style/ForecastSummaryGroupItem"
+            layout="@layout/forecast_summary"/>
+
+    <include
+            android:id="@+id/forecast4"
+            style="@style/ForecastSummaryGroupItem"
+            layout="@layout/forecast_summary"/>
+
+</LinearLayout>

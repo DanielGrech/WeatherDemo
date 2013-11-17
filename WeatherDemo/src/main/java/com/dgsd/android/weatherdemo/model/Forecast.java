@@ -3,6 +3,7 @@ package com.dgsd.android.weatherdemo.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
+import android.text.format.DateUtils;
 import com.google.gson.annotations.SerializedName;
 import timber.log.Timber;
 
@@ -18,7 +19,7 @@ import java.util.List;
  */
 public class Forecast implements Parcelable {
 
-    private transient long mId;
+    private transient long mId = -1;
 
     @SerializedName("date")
     private String mDateStr;
@@ -141,6 +142,24 @@ public class Forecast implements Parcelable {
 
     public void setWindSpeed(final int windSpeed) {
         mWindSpeed = windSpeed;
+    }
+
+    public String buildWeatherDescription() {
+        final StringBuilder desc = new StringBuilder();
+        if (mWeatherDescription != null) {
+            for (int i = 0, size = mWeatherDescription.size(); i < size; i++) {
+                if (i != 0) {
+                    desc.append('\n');
+                }
+                desc.append(mWeatherDescription.get(i).getValue());
+            }
+        }
+
+        return desc.toString();
+    }
+
+    public boolean isToday() {
+        return DateUtils.isToday(getDate() * 1000);
     }
 
     @Override

@@ -53,12 +53,11 @@ public class WeatherContentProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String sel, String[] selArgs, String sort) {
         try {
-
             SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
             qb.setTables(getTableFromType(sURIMatcher.match(uri)).getName());
 
             Cursor cursor = qb.query(mDb.getReadableDatabase(),
-                    projection, sel, selArgs, null, null, sort);
+                    projection, sel, selArgs, null, null, sort, uri.getQueryParameter("limit"));
 
             if (cursor != null) {
                 cursor.setNotificationUri(mContentResolver, uri);
@@ -87,12 +86,12 @@ public class WeatherContentProvider extends ContentProvider {
                 id = ProviderUtils.upsert(db, table, values, upsertFields);
             }
 
-            if (id > 0) {
+            if (id >= 0) {
                 Uri newUri = ContentUris.withAppendedId(uri, id);
                 mContentResolver.notifyChange(uri, null);
                 return newUri;
             } else {
-                throw new SQLException("Filed to insert row into " + uri);
+                throw new SQLException("Failed to insert row into " + uri);
             }
 
         } catch (Exception e) {

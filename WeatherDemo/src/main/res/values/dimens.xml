@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="todays_weather_text_size">164sp</dimen>
+    <dimen name="todays_weather_subtext_size">20sp</dimen>
+    <dimen name="forecast_summary_height">100dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="wind_dir_wrapper_height">40dp</dimen>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
+
+    <TextView
+            android:id="@+id/todays_weather"
+            android:textSize="@dimen/todays_weather_text_size"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:shadowDx="-1"
+            android:shadowDy="-1"
+            android:shadowRadius="1"
+            android:shadowColor="@color/translucent_black"
+            android:background="@null"
+            style="@style/PrimaryText"/>
+
+    <TextView
+            android:id="@+id/todays_weather_subtext"
+            android:layout_below="@id/todays_weather"
+            android:layout_alignRight="@id/todays_weather"
+            android:textSize="@dimen/todays_weather_subtext_size"
+            android:layout_marginTop="-24dp"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-light"
+            style="@style/PrimaryText"/>
+
+    <TextView
+            android:id="@+id/todays_date"
+            android:layout_above="@id/todays_weather"
+            android:layout_alignLeft="@id/todays_weather"
+            android:textSize="@dimen/todays_weather_subtext_size"
+            android:layout_marginBottom="-24dp"
+            android:text="@string/today"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-light"
+            style="@style/PrimaryText"/>
+
+    <include
+            android:id="@+id/forecast_summary_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/forecast_summary_height"
+            android:layout_marginTop="48dp"
+            android:layout_below="@id/todays_weather_subtext"
+            layout="@layout/forecast_summary_group"/>
+
+    <LinearLayout
+            android:id="@+id/wind_dir_wrapper"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/wind_dir_wrapper_height"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:id="@+id/wind_icon"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:scaleType="fitCenter"/>
+
+        <TextView
+                android:id="@+id/today_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAllCaps="true"
+                android:textStyle="bold"/>
+
+        <ImageView
+                android:id="@+id/today_wind_direction"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/ic_action_navigate"
+                android:scaleType="fitCenter"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

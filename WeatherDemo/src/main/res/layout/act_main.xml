@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="?android:attr/actionBarSize">
+
+    <fragment
+            android:id="@+id/forecast_frag"
+            android:name="com.dgsd.android.weatherdemo.fragment.ForecastFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</FrameLayout>

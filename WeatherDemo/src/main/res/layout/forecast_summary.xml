@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.dgsd.android.weatherdemo.view.ForecastSummaryView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:gravity="center">
+
+    <TextView
+            android:id="@+id/date"
+            style="@style/ForecastSummaryDate"/>
+
+    <ImageView
+            android:id="@+id/icon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:scaleType="fitXY"/>
+
+    <TextView
+            android:id="@+id/temperature"
+            style="@style/ForecastSummaryTemperature"/>
+
+
+</com.dgsd.android.weatherdemo.view.ForecastSummaryView>

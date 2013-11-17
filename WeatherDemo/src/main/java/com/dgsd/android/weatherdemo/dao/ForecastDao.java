@@ -55,28 +55,25 @@ public class ForecastDao implements IDao<Forecast> {
 
     @Override
     public ContentValues convert(final Forecast forecast) {
-        final StringBuilder desc = new StringBuilder();
-        if (forecast.getWeatherDescription() != null) {
-            for (int i = 0, size = forecast.getWeatherDescription().size(); i < size; i++) {
-                if (i != 0) {
-                    desc.append('\n');
-                }
-                desc.append(forecast.getWeatherDescription().get(i).getValue());
-            }
-        }
-
-        return new ContentValuesBuilder()
-                .put(ID, forecast.getId())
+        final ContentValuesBuilder builder = new ContentValuesBuilder()
                 .put(DATE_STR, forecast.getDateStr())
                 .put(DATE, forecast.getDate())
                 .put(MAX_TEMP, forecast.getMaxTemp())
                 .put(MIN_TEMP, forecast.getMinTemp())
-                .put(DESCRIPTION, desc.toString())
+                .put(DESCRIPTION, forecast.buildWeatherDescription())
                 .put(WEATHER_CODE, forecast.getWeatherCode())
-                .put(WIND_DIR_CODE, forecast.getWindDirectionCode())
                 .put(WIND_DIR_ANGLE, forecast.getWindDirectionAngle())
-                .put(WIND_SPEED, forecast.getWindSpeed())
-                .build();
+                .put(WIND_SPEED, forecast.getWindSpeed());
+
+        if (forecast.getId() > 0) {
+            builder.put(ID, forecast.getId());
+        }
+
+        if (forecast.getWindDirectionCode() != null) {
+            builder.put(WIND_DIR_CODE, forecast.getWindDirectionCode());
+        }
+
+        return builder.build();
     }
 
     private static Map<String, Integer> buildCursorCols(final Cursor cursor) {
