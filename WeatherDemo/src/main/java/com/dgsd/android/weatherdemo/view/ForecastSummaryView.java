@@ -9,8 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.Views;
+import butterknife.ButterKnife;
 import com.dgsd.android.weatherdemo.R;
 import com.dgsd.android.weatherdemo.api.WeatherCodeMap;
 import com.dgsd.android.weatherdemo.model.Forecast;
@@ -46,7 +47,7 @@ public class ForecastSummaryView extends LinearLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        Views.inject(this);
+        ButterKnife.inject(this);
         mImage.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
     }
 

@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.8.+'
     }
 }
 apply plugin: 'android'
@@ -17,17 +17,18 @@ def authKey = "bjju8ukc4fgehp5gm2r5bec6"
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion '19.0.1'
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
 
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 19
 
-        buildConfig """\
-            public static final String BASE_SERVER = "${baseServer}";
-            public static final String API_AUTH_KEY = "${authKey}";
-
-        """
+        buildConfigField "String", "BASE_SERVER", "\"${baseServer}\""
+        buildConfigField "String", "API_AUTH_KEY", "\"${authKey}\""
     }
 
     compileOptions {
@@ -40,14 +41,14 @@ android {
 dependencies {
     compile 'com.android.support:support-v4:+'
     compile 'com.jakewharton.timber:timber:2.0.+'
-    compile 'com.squareup.dagger:dagger-compiler:1.1.+'
-    compile 'com.squareup.dagger:dagger:1.1.+'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.+'
+    compile 'com.squareup.dagger:dagger:1.2.+'
     compile 'com.squareup:otto:1.3.+'
-    compile 'com.jakewharton:butterknife:3.0.+'
+    compile 'com.jakewharton:butterknife:4.0.+'
     compile 'com.squareup.okhttp:okhttp:1.2.+'
-    compile 'com.squareup.retrofit:retrofit:1.2.+'
+    compile 'com.squareup.retrofit:retrofit:1.4.+'
     compile 'com.google.code.gson:gson:2.2.+'
+    compile 'com.path:android-priority-jobqueue:1.1.+'
     compile fileTree(dir: '../libs', include: '*.jar')
-
     instrumentTestCompile 'org.easytesting:fest-assert-core:2.0M10'
 }

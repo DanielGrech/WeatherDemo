@@ -2,7 +2,8 @@ package com.dgsd.android.weatherdemo.activity;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
-import butterknife.Views;
+import butterknife.ButterKnife;
+import butterknife.ButterKnife;
 import com.dgsd.android.weatherdemo.R;
 import com.dgsd.android.weatherdemo.api.WeatherApi;
 import com.dgsd.android.weatherdemo.fragment.ForecastFragment;
@@ -28,7 +29,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.act_main);
         getActionBar().hide();
 
-        Views.inject(this);
+        ButterKnife.inject(this);
 
         mForecastFragment = findFragment(R.id.forecast_frag);
 

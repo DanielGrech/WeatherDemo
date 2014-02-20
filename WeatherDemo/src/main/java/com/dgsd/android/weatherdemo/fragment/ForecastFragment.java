@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import butterknife.Views;
+import butterknife.ButterKnife;
 import com.dgsd.android.weatherdemo.R;
 import com.dgsd.android.weatherdemo.data.ForecastLoader;
 import com.dgsd.android.weatherdemo.model.Forecast;
@@ -84,7 +85,7 @@ public class ForecastFragment extends BaseFragment implements LoaderManager.Load
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.frag_forecast, container, false);
-        Views.inject(this, v);
+        ButterKnife.inject(this, v);
 
         //Setup the initial animation state of our views
         mTodaysDate.setAlpha(0);
@@ -105,7 +106,7 @@ public class ForecastFragment extends BaseFragment implements LoaderManager.Load
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Views.reset(this);
+        ButterKnife.reset(this);
     }
 
     @Override
