@@ -7,8 +7,11 @@ import butterknife.ButterKnife;
 import com.dgsd.android.weatherdemo.R;
 import com.dgsd.android.weatherdemo.api.WeatherApi;
 import com.dgsd.android.weatherdemo.fragment.ForecastFragment;
-import com.dgsd.android.weatherdemo.service.ApiExecutorService;
+import com.dgsd.android.weatherdemo.jobs.GetWeatherJob;
+import com.path.android.jobqueue.JobManager;
 import com.squareup.otto.Subscribe;
+
+import javax.inject.Inject;
 
 /**
  *
@@ -18,6 +21,9 @@ public class MainActivity extends BaseActivity {
     public static final String KEY_HAS_MADE_FORECAST_REQUEST = "has_made_request";
 
     private ForecastFragment mForecastFragment;
+
+    @Inject
+    JobManager mJobManager;
 
     /**
      * Tracks weather or not we have made our network request for new forecasts
@@ -50,9 +56,10 @@ public class MainActivity extends BaseActivity {
 
         if (!mHasMadeForecastRequest) {
             //TODO: Sydney is hardcoded at the moment .. need to support picking multiple cities
-            registerForApi(ApiExecutorService.AsyncRequest.getWeather(this,
-                    "Sydney",
-                    WeatherApi.MAX_NUM_DAYS));
+            final GetWeatherJob job = new GetWeatherJob("Sydney", WeatherApi.MAX_NUM_DAYS);
+            registerForApi(job.getToken());
+            mJobManager.addJobInBackground(job);
+
             mHasMadeForecastRequest = true;
         }
     }

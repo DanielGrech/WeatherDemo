@@ -1,5 +1,6 @@
 package com.dgsd.android.weatherdemo.modules;
 
+import android.content.Context;
 import com.dgsd.android.weatherdemo.WeatherApp;
 import dagger.Module;
 import dagger.Provides;
@@ -18,8 +19,9 @@ public class AppModule {
         mApp = app;
     }
 
+    @ForApplication
     @Provides
-    public WeatherApp providesApp() {
+    public Context providesApp() {
         return mApp;
     }
 }

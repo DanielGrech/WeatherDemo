@@ -10,8 +10,6 @@ import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
 
-import static com.dgsd.android.weatherdemo.service.ApiExecutorService.AsyncRequest;
-
 /**
  * Base class for all activities in the app
  */
@@ -80,7 +78,7 @@ public class BaseActivity extends Activity {
     /**
      * Listen out for API broadcasts of type <code>token</code>
      *
-     * @param token The token returned from a method in {@link AsyncRequest}
+     * @param token The token returned from a {@link com.dgsd.android.weatherdemo.jobs.BaseJob} subclass
      */
     protected void registerForApi(String token) {
         mApiReceiver.addAcceptableToken(token);

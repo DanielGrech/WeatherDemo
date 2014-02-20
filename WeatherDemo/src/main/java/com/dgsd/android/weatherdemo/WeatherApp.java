@@ -1,9 +1,7 @@
 package com.dgsd.android.weatherdemo;
 
 import android.app.Application;
-import com.dgsd.android.weatherdemo.modules.AppModule;
-import com.dgsd.android.weatherdemo.modules.DaoModule;
-import com.dgsd.android.weatherdemo.modules.OttoModule;
+import com.dgsd.android.weatherdemo.modules.*;
 import com.dgsd.android.weatherdemo.util.ReleaseLogger;
 import dagger.ObjectGraph;
 import timber.log.Timber;
@@ -36,6 +34,8 @@ public class WeatherApp extends Application {
     private Object[] getDiModules() {
         return new Object[]{
                 new AppModule(this),
+                new AppServicesModule(),
+                new ApiModule(),
                 new OttoModule(),
                 new DaoModule()
         };

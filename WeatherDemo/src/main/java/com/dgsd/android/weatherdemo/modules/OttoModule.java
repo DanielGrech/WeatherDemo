@@ -13,12 +13,7 @@ import javax.inject.Singleton;
  * Provides an otto {@link com.squareup.otto.Bus} instance
  * to the application
  */
-@Module(
-        injects = {
-                MainActivity.class,
-                ForecastFragment.class
-        }
-)
+@Module(library = true)
 public class OttoModule {
 
     @Provides
